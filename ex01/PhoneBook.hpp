@@ -6,7 +6,8 @@ class PhoneBook
     Contact repertoire[8];
 
 public:
-    PhoneBook(/* args */);
+    PhoneBook();
     ~PhoneBook();
-    int search(Contact *);
+    void search(void);
+    void ac(void);
 };
