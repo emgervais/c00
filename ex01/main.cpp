@@ -1,21 +1,18 @@
 #include "PhoneBook.hpp"
 
-int main()
-{
-    PhoneBook p;
+int main(void) {
+    PhoneBook book;
+    std::string input = "";
 
-    std::string in = "";
-    std::cout << "ADD, SEARCH OR EXIT" << std::endl;
-    while(1)
+    std::cout << "enter ADD, SEARCH or EXIT" << std::endl;
+    while (input.compare("EXIT") && std::cin.good())
     {
-        if(!in.compare("EXIT"))
-            return 0;
-        if(!in.compare("SEARCH"))
-            p.search();
-        if(!in.compare("ADD"))
-            p.ac();
-        std::cout << std::flush << "> ";
-        std::cin >> in;
+        if (input.compare("ADD") == 0)
+            book.ac();
+        else if (input.compare("SEARCH") == 0) 
+            book.search();
+        std::cout << "> " << std::flush;
+        std::cin >> input;
     }
     return 0;
 }

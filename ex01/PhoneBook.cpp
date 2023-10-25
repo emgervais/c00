@@ -9,27 +9,30 @@ PhoneBook::~PhoneBook()
     std::cout << "quitting the phonebook" << std::endl;
 }
 
-void PhoneBook::search()
-{
-    for(int i = 0; i < 8; ++i)
+void PhoneBook::search() {
+    for (int i = 0; i < 8; ++i)
         this->repertoire[i].view(i);
+
     int in;
-    int ok = 1;
-    std::cout << "please enter an index between 0 and 7" << std::endl;
-    do
-    {
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-        std::cin >> in;
-        if(std::cin.good() && in >= 0 && in < 8)
-            ok = 0;
-        else
-        {
+
+    while (true) {
+        std::cout << "Please enter an index between 0 and 7: ";
+        if (std::cin >> in) {
+            if (in >= 0 && in < 8) {
+                this->repertoire[in].view(in);
+                break;
+            }
+        } else if (std::cin.eof())
+            return; 
+        else {
             std::cin.clear();
-            std::cout << "please re-enter an index between 0 and 7" << std::endl;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input. Please re-enter an index between 0 and 7." << std::endl;
         }
-    } while (ok != 0);
-    this->repertoire[in].view(in);
+    }
 }
+
+
 
 void PhoneBook::ac(void)
 {

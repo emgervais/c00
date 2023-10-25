@@ -3,6 +3,7 @@
 
 class PhoneBook
 {
+private:
     Contact repertoire[8];
 
 public:

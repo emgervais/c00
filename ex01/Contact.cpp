@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: egervais <egervais@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 17:07:06 by egervais          #+#    #+#             */
-/*   Updated: 2023/10/25 00:13:55 by egervais         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Contact.hpp"
 
-Contact::Contact(void) : _num(0)
+Contact::Contact(void)
 {
     for(int i = 0; i < 5; ++i)
         _data[i] = "";
@@ -37,6 +25,8 @@ std::string Contact::_input(std::string s)
             ok = 0;
         else
         {
+            if(!std::cin.good())
+                exit (0);
             std::cin.clear();
             std::cout << "please re-enter " << s << std::endl;
         }
@@ -46,11 +36,15 @@ std::string Contact::_input(std::string s)
 
 void Contact::view(int i)
 {
+    if(!this->_data[0].length())
+        return ;
     std::cout << '|' << i;
     for(int k = 0; k < 3; ++k)
     {
         if(this->_data[k].length() > 10)
             this->_data[k].replace(9, 10, ".").resize(10);
+        else
+            this->_data[k].append(10 - this->_data[k].length(), ' ');
         std::cout << '|' << this->_data[k];
     }
     std::cout << '|' << std::endl;
