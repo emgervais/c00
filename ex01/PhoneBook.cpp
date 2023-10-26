@@ -19,7 +19,7 @@ void PhoneBook::search() {
         std::cout << "Please enter an index between 0 and 7: ";
         if (std::cin >> in) {
             if (in >= 0 && in < 8) {
-                this->repertoire[in].view(in);
+                this->repertoire[in].viewf(in);
                 break;
             }
         } else if (std::cin.eof())

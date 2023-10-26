@@ -11,7 +11,7 @@ int main(void) {
             book.ac();
         else if (input.compare("SEARCH") == 0) 
             book.search();
-        std::cout << "> " << std::flush;
+        std::cout << "Input command > " << std::flush;
         std::cin >> input;
     }
     return 0;

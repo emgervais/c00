@@ -1,4 +1,5 @@
 #include "Contact.hpp"
+#include <iomanip>
 
 Contact::Contact(void)
 {
@@ -40,14 +41,29 @@ void Contact::view(int i)
         return ;
     std::cout << '|' << i;
     for(int k = 0; k < 3; ++k)
-    {
-        if(this->_data[k].length() > 10)
-            this->_data[k].replace(9, 10, ".").resize(10);
-        else
-            this->_data[k].append(10 - this->_data[k].length(), ' ');
-        std::cout << '|' << this->_data[k];
-    }
+        std::cout << '|' << std::setw(10) << _print(this->_data[k]);
     std::cout << '|' << std::endl;
+}
+
+void Contact::viewf(int i)
+{
+    if(!this->_data[0].length())
+        return ;
+    std::cout << std::endl;
+    std::cout << "Contact #" << i << " <<----" << std::endl;
+    std::cout << "First Name: " << this->_data[0] << std::endl;
+    std::cout << "Last Name: " << this->_data[1] << std::endl;
+    std::cout << "Nickname: " << this->_data[2] << std::endl;
+    std::cout << "deepest secret: " << this->_data[3] << std::endl;
+    std::cout << "phone number: " << this->_data[4] << std::endl;
+    std::cout << std::endl;
+}
+
+std::string Contact::_print(std::string str)
+{
+    if (str.length() > 10)
+        return str.substr(0, 9) + ".";
+    return str;
 }
 
 void Contact::add(void)
